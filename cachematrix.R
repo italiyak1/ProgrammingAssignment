@@ -1,13 +1,19 @@
+#using four functions
+#1. set to set the matrix
+#2. get to get the matrix
+#3. setinverse to set the inverse of the matrix
+#4. getinvetse to get the inverse of the matrix
+
 #Making catch Matrix
 MakeCacheMatrik <- function(x = matrik()) {
-      j <- NULL
+      inve <- NULL
       set <- function(y) {
             x <<- y
-            j <<- NULL
+            inve <<- NULL
       }
       get <- function() x
-      setinverse <- function(inverse) j <<- inverse
-      getinverse <- function() j
+      setinverse <- function(inverse) inve <<- inverse
+      getinverse <- function() inve
       list(setmatrix = set,
            getmatrix = get,
            setinversematrix = setinverse,
@@ -15,13 +21,13 @@ MakeCacheMatrik <- function(x = matrik()) {
 }
 #checking for catch inverse before solving the inverse matrix
 CacheSolve <- function(x, ...) {
-      i <- x$getinverse()
-      if (!is.null(i)) {
+      inve <- x$getinverse()
+      if (!is.null(inve)) {
             message("getting cached data")
-            return(i)
+            return(inve)
       }
       data <- x$get()
       i <- solve(data, ...)
-      x$setinverse(i)
-      i
+      x$setinverse(inve)
+      inve
 }
